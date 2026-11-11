@@ -29,6 +29,8 @@ def add_device(items, name, serial):
         raise ValueError("Название устройства не может быть пустым")
     if not serial:
         raise ValueError("Серийный номер не может быть пустым")
+    if any(item["serial"] == serial for item in items):
+        raise ValueError("Серийный номер уже существует: " + serial)
     items.append({"name": name, "serial": serial})
     return items
 
